@@ -1,12 +1,49 @@
-ESX is the leading framework for creating roleplay servers on FiveM, with many official and community resources designed to utilise the tools provided here. For a taste of what's available
-esx_identity: Enables character registration defining a players name, sex, height, and date of birth esx_society: Allows job resources to register a society, gaining employee management, society funds, and more esx_billing: Allows members of some societies to send fines or bills to other players esx_vehicleshop: Allow players to purchase vehicles from a dealership, or setup society support for a player-managed dealership esx_ambulancejob: Adds a death and respawn system while allowing players to work as EMS to heal and revive others
+# ESX Legacy
+![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-Many more resources are included in this repository, or you can browse the ESX Community Github or Cfx.re Releases board for more.
+In order to use ESX Legacy you will need a database wrapper first. You can choose between
+
+* [Oxmysql](https://github.com/overextended/oxmysql/) | newer and more recent, but requires query updating.
+* [MySQL-Async](https://github.com/brouznouf/fivem-mysql-async) | which is outdated.
+
+
+Since ESX Legacy, there is no longer need to use the following:
+
+
+
+Client side
+```
+ESX = nil
+
+Citizen.CreateThread(function()
+  while ESX == nil do
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	   Citizen.Wait(1)
+	end
+end)
+```
+
+Server side
+
+```
+ESX = nil
+
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+```
+
+You can simply import functionality by using this inside of your fxmanifest.lua
+
+```
+shared_script '@es_extended/imports.lua'
+``` 
+
+
 ---
 License
-es_extended - ESX framework for FiveM
+ESX Legacy - Roleplay Framework for FiveM
 
-Copyright (C) 2015-2022 Jérémie N'gadi
+Originally created by Jérémie N'gadi
+
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 
@@ -14,3 +51,4 @@ This program Is distributed In the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy Of the GNU General Public License along with this program. If Not, see http://www.gnu.org/licenses/.
 
+Copyright (C) 2015-2022 Jérémie N'gadi
